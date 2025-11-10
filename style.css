@@ -54,6 +54,7 @@ a {
     align-items: end;
     height: 300px;
     width: 700px;
+    border-radius: 10px;
     padding: 50px 0;
     background-color: #fff;
 }
