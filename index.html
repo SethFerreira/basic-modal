@@ -3,8 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <title>Basic Modal</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            height: 100vh;
+            font-size: 18px;
+            font-family: Arial, sans-serif;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1)), url(background.png);
+            background-position: center;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .container {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            display: none;
+        }
+
+        .modal-box {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            width: 700px;
+            height: 250px;
+            border-radius: 10px;
+            background-color: #fff;
+        }
+
+        .opened-message {
+            display: flex;
+            justify-content: center;
+            align-items: end;
+            height: 300px;
+            width: 700px;
+            border-radius: 10px;
+            padding: 50px 0;
+            background-color: #fff;
+        }
+
+        #message {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 200%;
+            color: #100e20e0;
+            text-transform: capitalize;
+        }
+
+        .icon-close {
+            font-size: 300%;
+            color: rgb(170, 2, 2);
+        }
+
+        #open-modal-btn {
+            padding: 5px 10px;
+            border: 2px solid transparent;
+            font-size: 15px;
+            color: #fff;
+            letter-spacing: 2px;
+            background-color: rgb(41, 142, 231);
+            border-radius: 5px;
+            text-transform: uppercase;
+            transition: background-color 0.2s, color 0.2s, border 0.2s;
+        }
+
+        #open-modal-btn:hover {
+            border: 2px solid rgb(41, 142, 231);
+            color: rgb(41, 142, 231);
+            background-color: #fff;
+            cursor: pointer;
+        }
+
+    </style>
 </head>
 <body>
     <div class="container">
@@ -21,6 +117,27 @@
     </div>
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
-    <script src="script.js"></script>
+    <script>
+        const btnClose = document.querySelector('.icon-close');
+        const overlay = document.querySelector('.overlay');
+        const btnOpen = document.getElementById('open-modal-btn');
+
+        btnOpen.addEventListener('click', () => {
+            overlay.style.display = 'flex';
+            btnOpen.style.display = 'none';
+        });
+
+        btnClose.addEventListener('click', () => {
+            overlay.style.display = 'none';
+            btnOpen.style.display = 'block';
+        });
+
+        overlay.addEventListener('click', (e) => {
+            if (e.target === overlay) {
+                overlay.style.display = 'none';
+            }
+            btnOpen.style.display = 'block';
+        });
+    </script>
 </body>
 </html>
